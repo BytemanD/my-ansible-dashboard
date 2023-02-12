@@ -1,0 +1,1 @@
+recursive-include myansi *.py *.scss *.js *.html *.jpg *.gif *.png *.css *.map *.ttf *.woff *.woff2 *.eot *.mo

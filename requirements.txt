@@ -1,0 +1,13 @@
+pbr
+wheel
+cffi>=1.4.1
+futures==3.1.1
+setuptools_rust
+tornado
+requests
+jinja2
+bs4
+sqlalchemy
+dataclasses>=0.6; python_version < '3.7'
+ansible==4.10.0
+https://github.com/fjboy/easy-to-use/releases/download/dev/easy2use-1.0.6.dev5-py3-none-any.whl

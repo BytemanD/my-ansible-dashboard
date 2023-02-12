@@ -1,0 +1,30 @@
+<v-row>
+  <v-col cols="2">
+    <v-text-field label="节点" placeholder="选择节点" v-model="commandView.host"></v-text-field>
+  </v-col>
+  <v-col>
+    <v-text-field label="命令" placeholder="请输入命令" v-model="commandView.cmd"></v-text-field>
+  </v-col>
+  <v-col cols="2">
+    <v-btn color="primary" @click="commandView.run()" :disabled="commandView.running">执行</v-btn>
+    <v-icon color="warning" v-if="commandView.running" class="mdi-spin">mdi-rotate-right</v-icon>
+  </v-col>
+</v-row>
+
+<h3>执行结果</h3>
+
+<v-data-table dense :headers="commandView.table.headers" :items="commandView.table.items" item-key="hostname"
+  :items-per-page="commandView.table.itemsPerPage" :search="commandView.table.search"
+  show-select v-model="commandView.table.selected" show-expand single-expand>
+  <template v-slot:item.status="{ headers, item }">
+    <v-icon color="success" v-if="item.status == 'ok'">mdi-emoticon-happy</v-icon>
+    <v-icon color="error" v-if="item.status == 'failed'">mdi-emoticon-sad</v-icon>
+    <v-icon color="warning" v-if="item.status == 'unreachable'">mdi-emoticon-sad</v-icon>
+  </template>
+  <template v-slot:expanded-item="{ headers, item }">
+    <td :colspan="headers.length" >
+      <pre class="white--text grey darken-3 pa-4">[[ commandView.table.getOutput(item) ]]</pre>
+    </td>
+  </template>
+
+</v-data-table>

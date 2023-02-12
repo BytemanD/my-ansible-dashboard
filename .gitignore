@@ -26,6 +26,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+AUTHORS
+ChangeLog
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -127,3 +129,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# vscode
+.vscode
+
+myansi/static/cdn
+myansi/static/cdn.zip
+myansi/static/include
+
+etc/myansi.db
+etc/myansi.conf
+etc/hosts
+i18n/locale
+i18n/*.mo
+myansi/locale

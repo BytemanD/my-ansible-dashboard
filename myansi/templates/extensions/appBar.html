@@ -1,0 +1,9 @@
+<v-toolbar-title style="width: 20%">
+    <v-select solo-inverted flat hide-details :items="clusterTable.items" :prefix='I18N.t("cluster")+":"' item-text="name" class="rounded-0" append-icon="mdi-map"
+        v-model="clusterTable.selected" v-on:change="useCluster">
+    </v-select>
+</v-toolbar-title>
+<v-spacer></v-spacer>
+<v-btn text tile height="100%" @click="settings.show = !settings.show"><v-icon>mdi-cog</v-icon></v-btn>
+
+{% include 'settings.html' %}

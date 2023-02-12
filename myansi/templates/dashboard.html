@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ name }}</title>
+    {% include "requires.html" %}
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-app-bar dense app hidden :dark="ui.theme.getValue() == 'dark'">
+                <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+                {% include "extensions/appBar.html" %}
+            </v-app-bar>
+            <v-navigation-drawer v-model="drawer" app src hidden permanent :width="ui.navigatorWidth.getValue()" :expand-on-hover="drawer == false" :mini-variant="drawer == false" :dark="ui.theme.getValue() == 'dark'">
+                {% include "extensions/navigation.html" %}
+            </v-navigation-drawer>
+            <v-main>
+                <v-container fluid>
+                    {% include "extensions/loader.html" %}
+                    <v-row hidden>
+                        <v-col cols="12" :hidden="navigation.items[navigation.item].title != '概览'">{% include "extensions/overview.html" %}</v-col>
+                        <v-col cols="12" :hidden="navigation.items[navigation.item].title != '命令'">{% include "extensions/command.html" %}</v-col>
+                        <v-col cols="12" :hidden="navigation.items[navigation.item].title != '任务'">{% include "extensions/task.html" %}</v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+
+            <!-- <v-footer app>author: fjboy</v-footer> -->
+        </v-app>
+    </div>
+</body>
+<script src="/static/dashboard.js" type="module"></script>

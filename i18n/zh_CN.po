@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2022-09-17 22:42+0800\n"
+"Last-Translator: root <root@laptop-bfo405gc.localdomain>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Install success."
+msgstr "安装成功"
+
+msgid "Check releases failed"
+msgstr "检查release版本失败"
+
+msgid "No release found"
+msgstr "未发现release版本"
+
+msgid "Current version is: %s"
+msgstr "当前版本：%s"
+
+msgid "Latest release version: %s"
+msgstr "最新release版本：%s"
+
+msgid "The current version is the latest."
+msgstr "当前已经是最新版本。"
+
+msgid "A new image is available:"
+msgstr "有新的镜像:"
+
+msgid "myansi Command Line"
+msgstr "myansi 命令行"
+
+msgid "Subcommands"
+msgstr "子命令"
+
+msgid "Run serve with specified port"
+msgstr "指定服务端口"
+
+msgid "Run serve with develop mode"
+msgstr "以开发者模式运行"
+
+msgid "Show debug message"
+msgstr "显示 debug 信息"
+
+msgid "answer yes for all questions"
+msgstr "对所有问题回答是"
+
+msgid "use cache if it is downloaded"
+msgstr "如果已经下载，使用缓存"
+
+msgid "Check image version"
+msgstr "检查镜像版本"
+
+msgid "Image API"
+msgstr "镜像API"

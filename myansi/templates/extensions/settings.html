@@ -1,0 +1,22 @@
+<v-bottom-sheet v-model="settings.show">
+    <v-sheet class="pa-4">
+        <v-row>
+            <v-col cols="12" lg="2" md="3" sm="12">
+                <v-select v-on:change="I18N.setDisplayLang(I18N.locale);" hide-details dense outlined :label="I18N.t('language')" :items="['en-US', 'zh-CN']" v-model="I18N.locale"></v-select>
+            </v-col>
+        </v-row>
+        <v-row>
+            <template v-for="(item, key) in settings.items">
+                <v-col cols="12" lg="2" md="3" sm="12">
+                    <v-select v-if="item.choises" hide-details dense outlined :label="I18N.t(key)" :items="item.choises" v-model="item.value"
+                            v-on:change="item.onChange(item.value)">
+                    </v-select>
+                </v-col>
+            </template>
+        </v-row>
+    </v-sheet>
+    <v-sheet class="pa-4 text-right">
+        <v-btn color="primary" @click="saveSettings()">[[ I18N.t('save') ]]</v-btn>
+        <v-btn color="warning" @click="resetSettings()">[[ I18N.t('reset') ]]</v-btn>
+    </v-sheet>
+</v-bottom-sheet>
