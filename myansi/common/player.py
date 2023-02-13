@@ -65,8 +65,7 @@ class MyAnsi(object):
                 {'action': {'module': 'shell', 'args': command}},
             ]
         )
-        LOG.info('111111111 %s', CONF.inventory)
-
+        LOG.info('inventory path %s', CONF.inventory)
         result_callback = ResultCallback()
         player = runner.load(data)
         tqm = task_queue_manager.TaskQueueManager(

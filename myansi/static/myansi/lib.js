@@ -406,12 +406,12 @@ export class CommandTable extends DataTable {
         this.items = [];
     }
     getOutput(result){
-        if (result.stderr_lines.length > 0){
+        if (result.stderr_lines && result.stderr_lines.length > 0){
             return result.stderr_lines.join('\n')
+        } else if (result.stdout_lines && result.stdout_lines.length > 0 ){
+            return result.stdout_lines.join('\n')
         }
-        return result.stdout_lines.join('\n')
-
-
+        return ''
     }
 }
 

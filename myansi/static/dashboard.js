@@ -94,23 +94,19 @@ new Vue({
         // this.drawAz();
     },
     created: async function () {
-        // await this.clusterTable.refresh();
-        // this.clusterTable.setSelected($cookies.get('clusterId'));
-        // init($cookies);
-        
-        // try {
-        //     this.refreshContainer();
-        // } catch(e) {
-        //     if (e.message == 'Request failed with status code 404'){
-        //         ALERT.error(`Region ${$cookies.get('region')} 异常，切换到默认Region`)
-        //         $cookies.remove('region');
-        //         window.open('/dashboard', '_self')
-        //     }
-        // } finally {
-            let loader = document.getElementById('loader');
-            if (loader){
-                loader.remove()
-            }
-        // }
+        let loader = document.getElementById('loader');
+        if (loader){
+            loader.remove()
+        }
     },
+    watch: {
+        'navigation.item': {
+            handler(newValue, oldValue) {
+                if (newValue != undefined) {
+                    this.$cookies.set('navigationItem', newValue);
+                }
+                this.refreshContainer();
+            },
+        },
+    }
 });
