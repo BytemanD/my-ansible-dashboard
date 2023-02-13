@@ -25,12 +25,14 @@ My Ansible Dashboard With vutify
 
 ### 2.2 在docker容器中运行
 
-1. 构建wheel包：`python3 -m pip build --wheel-dir=dist `
+1. 构建wheel包：`python3 -m pip wheel --prefer-binary --no-deps --wheel-dir=dist ./`
 2. 构建镜像 `python3 .\install\build.py dist/<THE_PATH_OF_WHEEL_FILE>`
 3. 启动容器
    ```shell
    IMAGE=myansi:<VERSION>
-   docker run -itd --p 80:80 --name myansi ${IMAGE}
+   mkdir /etc/myansi
+   cp /etc/ansible/hosts /etc/myansi/
+   docker run -itd -p 8082:80 -v /etc/myansi:/etc/myansi --name myansi ${IMAGE}
    ```
 
 ### 2.3 直接运行（开发者模式）

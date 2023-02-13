@@ -81,11 +81,16 @@ class ClientExt extends Restfulclient {
 class Command extends Restfulclient {
     constructor() { super('/command') }
 }
+class Host extends Restfulclient {
+    constructor() { super('/host') }
+}
+
 
 export class Api {
     constructor() {
         // keystone
         this.command = new Command();
+        this.host = new Host();
 
     }
 }

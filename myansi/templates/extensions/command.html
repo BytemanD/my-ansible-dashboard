@@ -1,9 +1,18 @@
 <v-row>
   <v-col cols="2">
-    <v-text-field label="节点" placeholder="选择节点" v-model="commandView.host"></v-text-field>
+    <v-select hide-details :items="Object.keys(commandView.hosts)" :prefix='I18N.t("group")+":"' v-model="commandView.group">
+    </v-select>
+  </v-col>
+  <v-col cols="2">
+    <v-select hide-details :items="commandView.hosts[commandView.group]" :prefix='I18N.t("host")+":"'
+        v-model="commandView.host">
+    </v-select>
+
+    <!-- <v-text-field label="节点" placeholder="选择节点" v-model="commandView.group"></v-text-field>
+    <v-text-field label="节点" placeholder="选择节点" v-model="commandView.host"></v-text-field> -->
   </v-col>
   <v-col>
-    <v-text-field label="命令" placeholder="请输入命令" v-model="commandView.cmd"></v-text-field>
+    <v-text-field :prefix='I18N.t("command")+":"'  placeholder="请输入命令" v-model="commandView.cmd"></v-text-field>
   </v-col>
   <v-col cols="2">
     <v-btn color="primary" @click="commandView.run()" :disabled="commandView.running">执行</v-btn>

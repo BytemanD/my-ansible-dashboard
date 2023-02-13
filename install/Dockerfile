@@ -2,9 +2,9 @@ FROM python:3.9.0-slim
 
 ARG PACKAGE_NAME
 
-COPY $PACKAGE_NAME /tmp/
-COPY pip.conf /tmp
-COPY requirements.txt /tmp
+COPY ${PACKAGE_NAME} /tmp/${PACKAGE_NAME}
+COPY pip.conf /tmp/pip.conf
+COPY requirements.txt /tmp/requirements.txt
 
 RUN mkdir -p ~/.pip/ && mv /tmp/pip.conf ~/.pip \
     && pip install --upgrade pip \

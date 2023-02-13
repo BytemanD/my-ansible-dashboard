@@ -39,14 +39,30 @@ class Dashboard(BaseReqHandler):
         self.render('dashboard.html', name='MyAnsi', cluster='')
 
 
+class Host(BaseReqHandler):
+
+    def get(self):
+        groups = self.get_arguments('group')
+        if not groups:
+            groups = player.MYANSI.list_groups()
+        hosts = {}
+        for group in groups:
+            if group == 'all':
+                continue
+            hosts.setdefault(group, [])
+            hosts[group].extend(
+                [host.name for host in player.MYANSI.list_hosts(group)]
+            )
+        self.set_status(200)
+        self.finish({'hosts': hosts})
+
 class Command(BaseReqHandler):
 
     def post(self):
-        manager = player.MyAnsi()
         body = json.loads(self.request.body)
         host = body.get('host')
         cmd = body.get('cmd')
-        result = manager.run(host, cmd)
+        result = player.MYANSI.run(host, cmd)
         self.set_status(200)
         self.finish({'result': result.to_dict()})
 
@@ -157,6 +173,7 @@ def get_routes():
     return [
         (r'/', Index),
         (r'/dashboard', Dashboard),
+        (r'/host', Host),
         (r'/command', Command),
         (r'/configs', Configs),
         (r'/cluster', Cluster),

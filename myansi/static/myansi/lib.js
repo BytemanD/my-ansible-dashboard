@@ -417,18 +417,26 @@ export class CommandTable extends DataTable {
 
 export class CommandView {
     constructor(){
-        this.host = 'all';
+        this.group = 'all';
+        this.host = null;
+
         this.cmd = 'hostname'
         this.running = false;
         this.table = new CommandTable();
+        this.hosts = {'all': []};
+    }
+    async listHosts(){
+        let hosts = (await API.host.list()).hosts;
+        for (let group in hosts){
+            this.hosts[group] = hosts[group];
+        }
     }
     async run() {
-        console.debug(this.host, this.cmd)
         if (! this.cmd){
             return;
         }
         let data = {
-            host: this.host,
+            host: this.host ? this.host : this.group,
             cmd: this.cmd
         }
         this.running = true;

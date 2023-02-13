@@ -18,15 +18,7 @@ loader = None
 inv_manager = None
 var_manager = None
 
-
-def init():
-    global loader, inv_manager, var_manager
-
-    loader = DataLoader()
-    inv_manager = InventoryManager(loader=loader, sources=CONF.inventory)
-    var_manager = VariableManager(loader, inv_manager)
-    context._init_global_context(Values({'connection': 'smart',
-                                         'verbosity': 3}))
+MYANSI = None
 
 
 class ResultCallback(callback.CallbackBase):
@@ -56,6 +48,11 @@ class ResultCallback(callback.CallbackBase):
 
 class MyAnsi(object):
 
+    def __init__(self) -> None:
+        LOG.info('inventory path %s', CONF.inventory)
+        self.inventory_manager = InventoryManager(loader=loader,
+                                                  sources=CONF.inventory)
+
     def run(self, hosts: str, command: str):
         runner = play.Play()
         data = dict(
@@ -77,3 +74,32 @@ class MyAnsi(object):
         )
         tqm.run(player)
         return result_callback
+
+    def list_groups(self):
+        return self.inventory_manager.list_groups()
+
+    def list_hosts(self, pattern='all'):
+        return self.inventory_manager.list_hosts(pattern=pattern)
+        # result_callback = ResultCallback()
+        # player = runner.load(data)
+        # tqm = task_queue_manager.TaskQueueManager(
+        #     inventory=inv_manager,
+        #     variable_manager=var_manager,
+        #     loader=loader,
+        #     passwords=None,
+        #     stdout_callback=result_callback
+        # )
+        # tqm.run(player)
+        # return result_callback
+
+
+def init():
+    global loader, inv_manager, var_manager, MYANSI
+
+    loader = DataLoader()
+    inv_manager = InventoryManager(loader=loader, sources=CONF.inventory)
+    var_manager = VariableManager(loader, inv_manager)
+    context._init_global_context(Values({'connection': 'smart',
+                                         'verbosity': 3}))
+
+    MYANSI = MyAnsi()

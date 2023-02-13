@@ -31,6 +31,9 @@ const MESSAGES = {
         newService: 'new service',
         service: 'service',
         new: 'new',
+        group: 'Group',
+        host: 'Host',
+        command: 'CMD',
     },
     'zh-CN': {
         language: '语言',
@@ -73,6 +76,9 @@ const MESSAGES = {
         newService: '新建服务',
         service: '服务',
         new: '新建',
+        group: '组',
+        host: '节点',
+        command: '命令',
     },
 };
 

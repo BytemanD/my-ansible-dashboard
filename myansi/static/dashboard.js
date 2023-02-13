@@ -53,10 +53,12 @@ new Vue({
             if (this.navigation.item >= this.navigation.items.length) {
                 this.navigation.item = 0;
             }
+            console.debug(this.navigation.items[this.navigation.item].title)
             switch (this.navigation.items[this.navigation.item].title) {
                 case '概览':
                     break;
                 case '命令':
+                    this.commandView.listHosts();
                     break;
                 case '任务':
                     break;
@@ -98,6 +100,7 @@ new Vue({
         if (loader){
             loader.remove()
         }
+        this.refreshContainer();
     },
     watch: {
         'navigation.item': {
